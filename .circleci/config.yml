@@ -1,7 +1,29 @@
 version: 2.1
 orbs:
   node: circleci/node@3.0.0
+  serverless-framework: circleci/serverless-framework@1.0.1
+  aws-cli: circleci/aws-cli@1.3.2
+
+jobs:
+  deploy:
+    executor: serverless/default
+    steps:
+      - checkout
+      - aws-cli/setup
+      - node/install-packages
+      - run:
+          command: sls deploy -v
+          name: deploy
+
 workflows:
-  node-tests:
+  tests:
     jobs:
       - node/test
+      - deploy:
+          requires:
+            - node/test
+          filters:
+            branches:
+                only: main
+          context: serverless-framework-orb-testing
+

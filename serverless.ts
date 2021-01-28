@@ -14,6 +14,7 @@ const serverlessConfiguration: AWS = {
   plugins: ['serverless-webpack', 'serverless-offline'],
   provider: {
     name: 'aws',
+    region: 'eu-west-1',
     runtime: 'nodejs12.x',
     apiGateway: {
       minimumCompressionSize: 1024,
@@ -21,13 +22,19 @@ const serverlessConfiguration: AWS = {
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
-      AWS_REGION: 'eu-west-1',
-      AWS_ACCESS_KEY: '[HIDDEN]',
-      AWS_ACCESS_SECRET_KEY: '[HIDDEN]'
+      AWS_CUSTOM_REGION: 'eu-west-1',
+      AWS_CUSTOM_ACCESS_KEY: process.env['AWS_ACCESS_KEY'],
+      AWS_CUSTOM_ACCESS_SECRET_KEY: process.env['AWS_ACCESS_KEY']
     },
     lambdaHashingVersion: '20201221',
   },
-  functions: { hello, s3, dynamo, queueInsert, queueConsumer }
+  functions: {
+    hello,
+    s3,
+    dynamo,
+    queueInsert,
+    queueConsumer
+  }
 }
 
 module.exports = serverlessConfiguration;
