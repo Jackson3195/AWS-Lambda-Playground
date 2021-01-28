@@ -13,8 +13,8 @@ jobs:
       - aws-cli/setup
       - node/install-packages
       - run:
-          command: sls deploy -v
           name: deploy
+          command: npm run deploy
 
 workflows:
   tests:

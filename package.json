@@ -5,7 +5,8 @@
   "main": "serverless.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "local": "serverless offline"
+    "local": "serverless offline",
+    "deploy": "sls deploy -v"
   },
   "dependencies": {
     "@middy/core": "^1.5.0",
