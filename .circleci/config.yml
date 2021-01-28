@@ -6,7 +6,8 @@ orbs:
 
 jobs:
   deploy:
-    executor: serverless/default
+    docker:
+      - image: circleci/node:12
     steps:
       - checkout
       - aws-cli/setup
@@ -25,5 +26,4 @@ workflows:
           filters:
             branches:
                 only: main
-          context: serverless-framework-orb-testing
 
