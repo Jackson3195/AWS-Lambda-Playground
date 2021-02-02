@@ -1,6 +1,6 @@
 import type { AWS } from '@serverless/typescript';
 
-import { hello, s3, dynamo, queueInsert, queueConsumer } from './src/functions';
+import { hello, s3, dynamo, queueInsert, queueConsumer, spreadsheet } from './src/functions';
 
 const serverlessConfiguration: AWS = {
   service: 'aws-ts-api',
@@ -33,7 +33,8 @@ const serverlessConfiguration: AWS = {
     s3,
     dynamo,
     queueInsert,
-    queueConsumer
+    queueConsumer,
+    spreadsheet
   }
 }
 

@@ -10,3 +10,14 @@ export const formatJSONResponse = (response: Record<string, unknown>, statusCode
     body: JSON.stringify(response)
   }
 }
+
+type FileBody = {
+  filename: string;
+  mimetype: string;
+  encoding: string;
+  truncated: boolean;
+  content: Buffer;
+}
+
+type FileAPIGatewayProxyEvent<S> = Omit<APIGatewayProxyEvent, 'body'> & { body: Record<string, S> };
+export type ValidatedEventFileGatewayProxyEvent = Handler<FileAPIGatewayProxyEvent<FileBody>, APIGatewayProxyResult>;
